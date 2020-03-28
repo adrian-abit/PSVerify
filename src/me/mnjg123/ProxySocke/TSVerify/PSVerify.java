@@ -46,7 +46,7 @@ public class PSVerify extends Plugin {
 		sendMessage(ChatColor.LIGHT_PURPLE + "reading Config and Message files...");
 		ConfigurationHandler configHandler = new ConfigurationHandler(this, tsCache, mySQLCache, sharedCache);
 		configHandler.loadConfiguration();
-		MessageHandler messageHandler = new MessageHandler(this);
+		MessageHandler messageHandler = new MessageHandler(this, tsCache);
 		messageHandler.loadConfiguration();
 		sendMessage(ChatColor.GREEN + "Configs done ✓");
 		sendMessage(ChatColor.LIGHT_PURPLE + "connecting to Database...");

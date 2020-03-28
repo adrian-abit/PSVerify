@@ -105,7 +105,7 @@ public class JoinListener implements Listener {
 						}
 
 						int id = getSharedCache().getID(permission);
-						getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, getPlugin(),
+						getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, player.getName(), getPlugin(), 
 								getTsHandler());
 						player.sendMessage(getMessage("updatesuccess"));
 
@@ -122,7 +122,7 @@ public class JoinListener implements Listener {
 							}
 							
 							int id = getSharedCache().getID(permission);
-							getDatabaseUtils().linkPlayerbyUID(uid, id, player.getUniqueId().toString(), permission, getPlugin(),
+							getDatabaseUtils().linkPlayerbyUID(uid, id, player.getUniqueId().toString(), permission, getPlugin(), player.getName(),
 									getTsHandler());
 							player.sendMessage(getMessage("updatesuccess"));
 							

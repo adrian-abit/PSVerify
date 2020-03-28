@@ -125,7 +125,7 @@ public class LinkCommand extends Command implements TabExecutor{
 								}
 								
 								int id = getSharedCache().getID(permission);
-								getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, plugin, getTsHandler());
+								getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, player.getName(), plugin, getTsHandler());
 								player.sendMessage(getMessage("updatesuccess"));
 								
 							}
@@ -151,7 +151,7 @@ public class LinkCommand extends Command implements TabExecutor{
 							}
 							
 							int id = getSharedCache().getID(permission);
-							getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, plugin, getTsHandler());
+							getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, player.getName(), plugin, getTsHandler());
 							player.sendMessage(getMessage("verifysuccess"));
 							
 						}
@@ -199,7 +199,7 @@ public class LinkCommand extends Command implements TabExecutor{
 										}
 										
 										int id = getSharedCache().getID(permission);
-										getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, plugin, getTsHandler());
+										getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, player.getName(), plugin, getTsHandler());
 										player.sendMessage(getMessage("updatesuccess"));
 										sender.sendMessage(getMessage("admin-updatesuccess"));
 										
@@ -226,7 +226,7 @@ public class LinkCommand extends Command implements TabExecutor{
 									}
 									
 									int id = getSharedCache().getID(permission);
-									getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, plugin, getTsHandler());
+									getDatabaseUtils().linkPlayerbyUUID(ip, id, player.getUniqueId().toString(), permission, player.getName(), plugin, getTsHandler());
 									player.sendMessage(getMessage("verifysuccess"));
 									sender.sendMessage(getMessage("admin-verifysuccess"));
 								}

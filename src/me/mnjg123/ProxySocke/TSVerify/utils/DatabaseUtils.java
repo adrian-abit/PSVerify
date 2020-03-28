@@ -143,7 +143,7 @@ public class DatabaseUtils {
  		 *
  		 * Links the TS-Client with the Player
  		 */
- 	   	public void linkPlayerbyUUID(String ip, int id, String uuid, String rank, Plugin plugin, TeamSpeakHandler teamSpeakHandler) {
+ 	   	public void linkPlayerbyUUID(String ip, int id, String uuid, String rank, String username, Plugin plugin, TeamSpeakHandler teamSpeakHandler) {
  	 
  		plugin.getProxy().getScheduler().runAsync(plugin, new Runnable() {
 			
@@ -152,7 +152,7 @@ public class DatabaseUtils {
 			
 			PreparedStatement st;
 			
-			String[] tsinfo = teamSpeakHandler.addRankToIP(ip, id, uuid);
+			String[] tsinfo = teamSpeakHandler.addRankToIP(ip, id, uuid, username);
 			
 			try {
 				st = connection.prepareStatement("INSERT INTO `verify` (`uuid`, `uid`, `rank`, `iconid`) VALUES (?, ?, ?, ?)");
@@ -184,7 +184,7 @@ public class DatabaseUtils {
  		 *
  		 * Links the TS-Client with the Player
  		 */
- 	   	public void linkPlayerbyUID(String uid, int id, String uuid, String rank, Plugin plugin, TeamSpeakHandler teamSpeakHandler) {
+ 	   	public void linkPlayerbyUID(String uid, int id, String uuid, String rank, Plugin plugin, String username, TeamSpeakHandler teamSpeakHandler) {
  	 
  		plugin.getProxy().getScheduler().runAsync(plugin, new Runnable() {
 			
@@ -193,7 +193,7 @@ public class DatabaseUtils {
 			
 			PreparedStatement st;
 			
-			String[] tsinfo = teamSpeakHandler.addRankToUID(uid, id, uuid);
+			String[] tsinfo = teamSpeakHandler.addRankToUID(uid, id, uuid, username);
 			
 			try {
 				st = connection.prepareStatement("INSERT INTO `verify` (`uuid`, `uid`, `rank`, `iconid`) VALUES (?, ?, ?, ?)");
