@@ -1,0 +1,19 @@
+MySQL:
+   host: 'localhost'
+   database: 'database'
+   port: 3306
+   username: 'username'
+   password: 'password'
+
+TeamSpeak:
+   host: 'localhost'
+   port: 10011
+   user: 'Query'
+   password: 'QueryPassword'
+   name: 'QueryName-BOT'
+   
+Verify:
+   ranks:
+   - proxysocke.admin,1
+   - proxysocke.mensch,2
+   cooldown: 10000
