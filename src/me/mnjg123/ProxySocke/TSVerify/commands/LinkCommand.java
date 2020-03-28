@@ -101,6 +101,7 @@ public class LinkCommand extends Command implements TabExecutor{
 					player.sendMessage(getMessage("cooldown"));
 					return;
 				}
+				getSharedCache().addCooldown(player.getUniqueId().toString());
 				getDatabaseUtils().isVerified(player.getUniqueId().toString(), getPlugin(), result ->{
 					if(result != null) {
 						if(player.hasPermission(result)) {
