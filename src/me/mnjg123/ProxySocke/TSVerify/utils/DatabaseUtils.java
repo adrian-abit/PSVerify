@@ -121,7 +121,6 @@ public class DatabaseUtils {
 					st1 = connection.prepareStatement("DELETE FROM `verify` WHERE `uuid` = ?");
 					st1.setString(1, uuid);
 					st1.executeUpdate();
-					System.out.println("done");
 					
 				} catch (SQLException e) {
 					

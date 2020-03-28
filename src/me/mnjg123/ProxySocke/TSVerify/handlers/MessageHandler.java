@@ -10,10 +10,13 @@ package me.mnjg123.ProxySocke.TSVerify.handlers;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 import me.mnjg123.ProxySocke.TSVerify.cache.TeamSpeakCache;
 import net.md_5.bungee.api.ChatColor;
@@ -98,9 +101,9 @@ public class MessageHandler {
 
 			file.getParentFile().mkdirs();
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(getPlugin().getResourceAsStream("messages.yml"), "UTF-8"));
+			BufferedReader br = new BufferedReader(new InputStreamReader(getPlugin().getResourceAsStream("messages.yml"), StandardCharsets.UTF_8));
 
-			FileWriter fw = new FileWriter(file);
+			Writer fw = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8);
 			PrintWriter pw = new PrintWriter(fw);
 			
 

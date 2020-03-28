@@ -22,6 +22,7 @@ import com.github.theholywaffle.teamspeak3.TS3Config;
 import com.github.theholywaffle.teamspeak3.TS3Query;
 import com.github.theholywaffle.teamspeak3.TS3Query.FloodRate;
 import com.github.theholywaffle.teamspeak3.api.ClientProperty;
+import com.github.theholywaffle.teamspeak3.api.reconnect.ReconnectStrategy;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 
 import me.mnjg123.ProxySocke.TSVerify.cache.TeamSpeakCache;
@@ -49,11 +50,14 @@ public class TeamSpeakHandler extends Thread {
 		ts3config.setHost(getTsCache().getHost());
 		ts3config.setQueryPort(getTsCache().getPort());
 		ts3config.setFloodRate(FloodRate.UNLIMITED);
+		ts3config.setReconnectStrategy(ReconnectStrategy.constantBackoff(25));
 		ts3query.connect();
 		
 		ts3api.login(getTsCache().getUsername(), getTsCache().getPassword());
 		ts3api.selectVirtualServerByPort(9987);
 		ts3api.setNickname(getTsCache().getBotname());
+		
+		
 		
 		
 		
@@ -71,7 +75,6 @@ public class TeamSpeakHandler extends Thread {
 	public String[] addRankToIP(String ip, int id, String uuid, String username) {
 		Client client = null;
 		for(Client clients : ts3api.getClients()) {
-			System.out.println(clients.getIp());
 			if(clients.getIp().equals(ip)) {
 				client = clients;
 				break;
@@ -83,8 +86,8 @@ public class TeamSpeakHandler extends Thread {
 		int icon_id = getIconAsInteger(uuid);
 		
 		String desc = getTsCache().getDescription();
-		desc.replace("%user%", username);
-		desc.replace("%uuid%", uuid);
+		desc = desc.replace("%user%", username);
+		desc = desc.replace("%uuid%", uuid);
 		ts3asyncapi.editClient(client.getId(), Collections.singletonMap(ClientProperty.CLIENT_DESCRIPTION, desc));
 		ts3asyncapi.addClientPermission(client.getDatabaseId(), "i_icon_id", icon_id, false);
 		
@@ -110,8 +113,8 @@ public class TeamSpeakHandler extends Thread {
 		
 		ts3asyncapi.addClientToServerGroup(id, ts3api.getDatabaseClientByUId(uid).getDatabaseId());
 		String desc = getTsCache().getDescription();
-		desc.replace("%user%", username);
-		desc.replace("%uuid%", uuid);
+		desc = desc.replace("%user%", username);
+		desc = desc.replace("%uuid%", uuid);
 		ts3asyncapi.editClient(ts3api.getClientByUId(uid).getId(), Collections.singletonMap(ClientProperty.CLIENT_DESCRIPTION, desc));
 		int icon_id = getIconAsInteger(uuid);
 		ts3asyncapi.addClientPermission(ts3api.getDatabaseClientByUId(uid).getDatabaseId(), "i_icon_id", icon_id, false);
