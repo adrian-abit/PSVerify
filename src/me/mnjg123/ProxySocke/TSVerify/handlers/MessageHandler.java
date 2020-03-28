@@ -98,10 +98,11 @@ public class MessageHandler {
 
 			file.getParentFile().mkdirs();
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(getPlugin().getResourceAsStream("messages.yml")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(getPlugin().getResourceAsStream("messages.yml"), "UTF-8"));
 
 			FileWriter fw = new FileWriter(file);
 			PrintWriter pw = new PrintWriter(fw);
+			
 
 			String line;
 

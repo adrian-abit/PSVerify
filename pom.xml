@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>PSVerify</groupId>
   <artifactId>PSVerify</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-ProxySocke</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
@@ -28,7 +28,7 @@
         </executions>
         <configuration>
             <shadedArtifactAttached>true</shadedArtifactAttached>
-            <shadedClassifierName>shaded</shadedClassifierName>
+            <shadedClassifierName>inc. dependencies</shadedClassifierName>
         </configuration>
     </plugin>
     </plugins>

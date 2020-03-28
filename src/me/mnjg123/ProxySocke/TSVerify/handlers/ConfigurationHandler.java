@@ -139,7 +139,7 @@ public class ConfigurationHandler {
 
 			file.getParentFile().mkdirs();
 			
-			BufferedReader br = new BufferedReader(new InputStreamReader(getPlugin().getResourceAsStream("config.yml")));
+			BufferedReader br = new BufferedReader(new InputStreamReader(getPlugin().getResourceAsStream("config.yml"), "UTF-8"));
 
 			FileWriter fw = new FileWriter(file);
 			PrintWriter pw = new PrintWriter(fw);

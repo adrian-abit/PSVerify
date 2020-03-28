@@ -62,7 +62,7 @@ public class PSVerify extends Plugin {
 		databaseUtils.createTable();
 		sendMessage(ChatColor.GREEN + "Database done ✓");
 		sendMessage(ChatColor.LIGHT_PURPLE + "connecting to TeamSpeak³ Server...");
-		TeamSpeakHandler tsHandler = new TeamSpeakHandler(tsCache);
+		TeamSpeakHandler tsHandler = new TeamSpeakHandler(tsCache, messageHandler);
 		tsHandler.start();
 		sendMessage(ChatColor.GREEN + "TeamSpeak done ✓");
 		sendMessage(ChatColor.LIGHT_PURPLE + "registring Commands and Listeners...");

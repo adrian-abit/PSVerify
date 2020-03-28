@@ -12,7 +12,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 
 import javax.imageio.ImageIO;
@@ -26,6 +25,7 @@ import com.github.theholywaffle.teamspeak3.api.ClientProperty;
 import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 
 import me.mnjg123.ProxySocke.TSVerify.cache.TeamSpeakCache;
+import me.mnjg123.ProxySocke.TSVerify.handlers.MessageHandler;
 
 /**
  * @author mnjg123 
@@ -43,7 +43,7 @@ public class TeamSpeakHandler extends Thread {
 	/**
 	 * Starts the Thread and connects with the TeamSpeak-3 Server
 	 */
-	public TeamSpeakHandler(TeamSpeakCache tsCache) {
+	public TeamSpeakHandler(TeamSpeakCache tsCache, MessageHandler messageHandler) {
 		this.tsCache = tsCache;
 		
 		ts3config.setHost(getTsCache().getHost());
