@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 
+import me.mnjg123.ProxySocke.TSVerify.cache.TeamSpeakCache;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.config.Configuration;
@@ -32,10 +33,20 @@ public class MessageHandler {
 	private File configurationFile;
 	private Configuration configuration;
 	
+	
+	private final TeamSpeakCache tsCache;
 	private final Plugin plugin;
 
-	public MessageHandler(Plugin plugin) {
+	public MessageHandler(Plugin plugin, TeamSpeakCache tsCache) {
 		this.plugin = plugin;
+		this.tsCache = tsCache;
+	}
+	
+	/**
+	 * @return {@link TeamSpeakCache} the tsCache
+	 */
+	public TeamSpeakCache getTsCache() {
+		return tsCache;
 	}
 	
 	/**
@@ -67,6 +78,8 @@ public class MessageHandler {
 			
 			configuration = ConfigurationProvider.getProvider(YamlConfiguration.class).load(configurationFile);
 
+			getTsCache().setDescription(configuration.getString("ts-description"));
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

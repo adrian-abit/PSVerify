@@ -134,7 +134,7 @@ public class UnlinkCommand extends Command implements TabExecutor{
 							sender.sendMessage(getMessage("admin-unlink"));
 							getDatabaseUtils().unlinkPlayerbyUUID(player.getUniqueId().toString(), getPlugin(), getTsHandler());
 							player.sendMessage(getMessage("unlinksuccess"));
-							sender.sendMessage(getMessage("admin-unlinksucceess"));
+							sender.sendMessage(getMessage("admin-unlinksuccess"));
 						} else {
 							sender.sendMessage(getMessage("admin-notverified"));
 						}
