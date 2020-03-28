@@ -8,7 +8,7 @@ MySQL:
 TeamSpeak:
    host: 'localhost'
    port: 10011
-   user: 'Query'
+   username: 'Query'
    password: 'QueryPassword'
    name: 'QueryName-BOT'
    

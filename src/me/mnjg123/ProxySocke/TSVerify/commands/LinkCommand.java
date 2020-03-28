@@ -8,6 +8,7 @@
  */
 package me.mnjg123.ProxySocke.TSVerify.commands;
 
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +24,6 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.TabExecutor;
-import net.md_5.bungee.connection.InitialHandler;
 
 /**
  * @author mnjg123
@@ -94,7 +94,7 @@ public class LinkCommand extends Command implements TabExecutor{
 	public void execute(CommandSender sender, String[] args) {
 		if(args.length == 0) {
 			
-			if(!(sender instanceof ProxiedPlayer)) {
+			if(sender instanceof ProxiedPlayer) {
 				
 				ProxiedPlayer player = (ProxiedPlayer) sender;
 				if(getSharedCache().hasCooldown(player.getUniqueId().toString())) {
@@ -106,7 +106,8 @@ public class LinkCommand extends Command implements TabExecutor{
 						if(player.hasPermission(result)) {
 							player.sendMessage(getMessage("verified"));
 						} else {
-							String ip = ((InitialHandler) player.getPendingConnection()).getHandshake().getHost();
+							InetSocketAddress isa = (InetSocketAddress) player.getSocketAddress();
+							String ip = isa.getAddress().getHostAddress();
 							int online = getTsHandler().isOnlineIP(ip);
 							if(online != 1) {
 								player.sendMessage(getMessage("instanzen"));
@@ -130,7 +131,8 @@ public class LinkCommand extends Command implements TabExecutor{
 							}
 						}
 					} else {
-						String ip = ((InitialHandler) player.getPendingConnection()).getHandshake().getHost();
+						InetSocketAddress isa = (InetSocketAddress) player.getSocketAddress();
+						String ip = isa.getAddress().getHostAddress();
 						int online = getTsHandler().isOnlineIP(ip);
 						
 						if(online == 0) {
@@ -177,7 +179,8 @@ public class LinkCommand extends Command implements TabExecutor{
 								if(player.hasPermission(result)) {
 								sender.sendMessage(getMessage("admin-verified"));
 								} else {
-									String ip = ((InitialHandler) player.getPendingConnection()).getHandshake().getHost();
+									InetSocketAddress isa = (InetSocketAddress) player.getSocketAddress();
+									String ip = isa.getAddress().getHostAddress();
 									int online = getTsHandler().isOnlineIP(ip);
 									if(online != 1) {
 										sender.sendMessage(getMessage("admin-instanzen"));
@@ -203,7 +206,8 @@ public class LinkCommand extends Command implements TabExecutor{
 									}
 								}
 							} else {
-								String ip = ((InitialHandler) player.getPendingConnection()).getHandshake().getHost();
+								InetSocketAddress isa = (InetSocketAddress) player.getSocketAddress();
+								String ip = isa.getAddress().getHostAddress();
 								int online = getTsHandler().isOnlineIP(ip);
 								
 								if(online == 0) {

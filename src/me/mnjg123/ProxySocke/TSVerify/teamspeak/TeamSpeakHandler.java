@@ -41,7 +41,7 @@ public class TeamSpeakHandler extends Thread {
 	 * Starts the Thread and connects with the TeamSpeak-3 Server
 	 */
 	public TeamSpeakHandler(TeamSpeakCache tsCache) {
-		this.tsCache = new TeamSpeakCache();
+		this.tsCache = tsCache;
 		
 		ts3config.setHost(getTsCache().getHost());
 		ts3config.setQueryPort(getTsCache().getPort());
@@ -68,6 +68,7 @@ public class TeamSpeakHandler extends Thread {
 	public String[] addRankToIP(String ip, int id, String uuid) {
 		Client client = null;
 		for(Client clients : ts3api.getClients()) {
+			System.out.println(clients.getIp());
 			if(clients.getIp().equals(ip)) {
 				client = clients;
 				break;
@@ -162,7 +163,7 @@ public class TeamSpeakHandler extends Thread {
 	public void removeRank(int id, String uid, long iconid) {
 		ts3asyncapi.removeClientFromServerGroup(id, ts3api.getDatabaseClientByUId(uid).getDatabaseId());
 		ts3asyncapi.deleteClientPermission(ts3api.getDatabaseClientByUId(uid).getDatabaseId(), "i_icon_id");
-		ts3api.deleteIcon(iconid);
+		ts3asyncapi.deleteIcon(iconid);
 	}
 	
 	
@@ -188,7 +189,7 @@ public class TeamSpeakHandler extends Thread {
 	      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 	      byteArrayOutputStream.flush();
 	      ImageIO.write(ImageIO.read(inputStream), "PNG", byteArrayOutputStream);
-	      iconId = Integer.valueOf(((Long)ts3api.uploadIconDirect(byteArrayOutputStream.toByteArray())).intValue());
+	      iconId = Integer.valueOf(((Long)ts3asyncapi.uploadIconDirect(byteArrayOutputStream.toByteArray()).getUninterruptibly()).intValue());
 	      byteArrayOutputStream.close();
 	    } catch (Exception ex) {
 	      ex.printStackTrace();

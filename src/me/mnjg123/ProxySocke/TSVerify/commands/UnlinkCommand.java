@@ -95,7 +95,7 @@ public class UnlinkCommand extends Command implements TabExecutor{
 	@Override
 	public void execute(CommandSender sender, String[] args) {
 		if(args.length == 0) {
-			if(sender instanceof ProxiedPlayer) {
+			if(!(sender instanceof ProxiedPlayer)) {
 				sender.sendMessage(getMessage("consoleerror"));
 			} else {
 				
@@ -104,6 +104,7 @@ public class UnlinkCommand extends Command implements TabExecutor{
 					player.sendMessage(getMessage("cooldown"));
 					return;
 				}
+				getSharedCache().addCooldown(player.getUniqueId().toString());
 				
 				getDatabaseUtils().isVerified(player.getUniqueId().toString(), plugin, result ->{
 					

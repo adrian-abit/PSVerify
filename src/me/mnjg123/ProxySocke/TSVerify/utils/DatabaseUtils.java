@@ -110,6 +110,7 @@ public class DatabaseUtils {
 					st.setString(1, uuid);
 					
 					ResultSet rs = st.executeQuery();
+					rs.next();
 					String uid = rs.getString("uid");
 					
 					int tsid = getSharedCache().getID(rs.getString("rank"));
@@ -119,7 +120,8 @@ public class DatabaseUtils {
 					
 					st1 = connection.prepareStatement("DELETE FROM `verify` WHERE `uuid` = ?");
 					st1.setString(1, uuid);
-					st.executeUpdate();
+					st1.executeUpdate();
+					System.out.println("done");
 					
 				} catch (SQLException e) {
 					
@@ -297,6 +299,7 @@ public class DatabaseUtils {
 					st.setString(1, uuid);
 					
 					ResultSet rs = st.executeQuery();
+					if(rs.next())
 					consumer.accept(rs.getString("uid"));
 				} catch (SQLException e) {
 					
