@@ -1,0 +1,42 @@
+prefix: "&7[&6Verify&7] "
+
+cooldown: "&cBitte hab noch etwas geduld, bis du den Befehl erneut ausführst!"
+verified: "&cDu bist bereits verifiziert!"
+instanzen: "&cDu bist mit mehr als einer Instanz auf dem TeamSpeak verbunden! Bitte trenne eine Verbindung."
+offline: "&cDu bist nicht auf dem TeamSpeak online!"
+update: "&aAktualisiere deinen Rang..."
+updatesuccess: "&aDein Rang wurde erfolgreich aktualisiert."
+verify: "&aDu wirst verifiziert..."
+verifysuccess: "&aDu wurdest erfolgreich verifiziert!"
+notverified: "&cDu bist nicht verifiziert!"
+unlink: "&aDu wirst entlinkt..."
+unlinksuccess: "&aDu wurdest erfolgreich entlinkt"
+
+
+consoleerror: "&cDieser Befehl ist nur als Spieler ausführbar sorry :/"
+
+
+usagenoadmin: "&c/link"
+usageadmin: "&c/link <name>"
+admin-offline: "&cDieser Spieler ist offline!"
+admin-verifed: "&cDieser Spieler ist bereits verifiziert"
+admin-instanzen: "&cDieser Spieler ist mit mehr als einer Instanz online"
+admin-instanzoffline: "&cEine Instanz mit dieser UID hat den TS noch nie betreten!"
+admin-offlinets: "&cDieser Spieler ist nicht auf dem TeamSpeak Server"
+admin-verify: "&aDer Spieler wird verifiziert..."
+admin-verifysuccess: "&aDer Spieler wurde erfolgreich verifiziert!"
+admin-update: "&aDer Spieler wird aktualisiert"
+admin-updatesuccess: "&aDer Spieler wurde erfolgreich aktualisiert!"
+admin-notverified: "&cDer Spieler ist nicht verifiziert"
+admin-unlink: "&aDer Spieler wird entlinkt..."
+admin-unlinksuccess: "&aDer Spieler wurde entlinkt!"
+
+
+noperms: "&cDarauf hast du keine Berechtigung"
+
+
+
+
+
+#Permissions für das Plugin ! Ändern bringt nichts
+#Admin: PSVerify.admin

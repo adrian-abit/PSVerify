@@ -1,0 +1,5 @@
+main: me.mnjg123.ProxySocke.TSVerify.PSVerify
+name: PSVerify
+version: 0.0.1-SNAPSHOT
+author: mnjg123
+authors: [mnjg123, ProxySocke]
