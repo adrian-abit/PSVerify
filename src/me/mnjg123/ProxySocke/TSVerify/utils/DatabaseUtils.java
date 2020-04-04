@@ -89,6 +89,24 @@ public class DatabaseUtils {
 
 	}
 	
+	public void letAlive(Plugin plugin) {
+		plugin.getProxy().getScheduler().runAsync(plugin, new Runnable() {
+			
+			@Override
+			public void run() {
+				PreparedStatement st;
+				
+				try {
+					st = connection.prepareStatement("SELECT 1");
+					st.executeQuery();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+			
+	}
+	
 	
 	/**
 	 * 

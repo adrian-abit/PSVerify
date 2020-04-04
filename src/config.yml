@@ -1,19 +1,30 @@
 MySQL:
    host: 'localhost'
-   database: 'database'
+   database: 'tsverify'
    port: 3306
-   username: 'username'
-   password: 'password'
+   username: 'system'
+   password: 'RUVTyniiNIzYzEFX'
 
 TeamSpeak:
    host: 'localhost'
    port: 10011
-   username: 'Query'
-   password: 'QueryPassword'
-   name: 'QueryName-BOT'
+   username: 'verifybot'
+   password: 'UQT2qI3I'
+   name: 'Verify'
    
 Verify:
    ranks:
-   - proxysocke.admin,1
-   - proxysocke.mensch,2
+   - rank.player,146
+   - rank.premium,145
+   - rank.guardian,144
+   - rank.urbexer,143
+   - rank.hunter,142
+   - rank.youtuber,147
+   - rank.friend,140
+   - rank.builder,138
+   - rank.dev,137
+   - rank.supp,136
+   - rank.mod,135
+   - rank.srmod,134
+   - rank.tsupp,204
    cooldown: 10000

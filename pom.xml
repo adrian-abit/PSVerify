@@ -28,7 +28,7 @@
         </executions>
         <configuration>
             <shadedArtifactAttached>true</shadedArtifactAttached>
-            <shadedClassifierName>inc. dependencies</shadedClassifierName>
+            <shadedClassifierName>incl. dependencies</shadedClassifierName>
         </configuration>
     </plugin>
     </plugins>

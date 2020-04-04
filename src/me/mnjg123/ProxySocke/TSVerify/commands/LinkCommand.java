@@ -239,6 +239,8 @@ public class LinkCommand extends Command implements TabExecutor{
 						
 						
 						
+					} else {
+						sender.sendMessage(getMessage("admin-offline"));
 					}
 					
 					
@@ -248,7 +250,7 @@ public class LinkCommand extends Command implements TabExecutor{
 				}
 				
 			} else {
-				sender.sendMessage(getMessage("noperms"));
+				sender.sendMessage(getMessage("usagenoadmin"));
 			}
 		}
 	}

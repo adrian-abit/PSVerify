@@ -17,6 +17,7 @@ import me.mnjg123.ProxySocke.TSVerify.commands.LinkCommand;
 import me.mnjg123.ProxySocke.TSVerify.commands.UnlinkCommand;
 import me.mnjg123.ProxySocke.TSVerify.handlers.ConfigurationHandler;
 import me.mnjg123.ProxySocke.TSVerify.handlers.MessageHandler;
+import me.mnjg123.ProxySocke.TSVerify.handlers.MySQL_timeoutHandler;
 import me.mnjg123.ProxySocke.TSVerify.listeners.JoinListener;
 import me.mnjg123.ProxySocke.TSVerify.teamspeak.TeamSpeakHandler;
 import me.mnjg123.ProxySocke.TSVerify.utils.DatabaseUtils;
@@ -29,9 +30,12 @@ import net.md_5.bungee.api.plugin.Plugin;
  * @author mnjg123
  *
  */
+
+
 public class PSVerify extends Plugin {
 	
 	String[] asciiart = {" _____ _____ _____         _ ___     ", "|  _  |   __|  |  |___ ___|_|  _|_ _ ", "|   __|__   |  |  | -_|  _| |  _| | |", "|__|  |_____|\\___/|___|_| |_|_| |_  |", "                                |___|" }; 
+	private TeamSpeakHandler tsHandler;
 	
 	@Override
 	public void onEnable() {
@@ -60,9 +64,10 @@ public class PSVerify extends Plugin {
 		}
 		sendMessage(ChatColor.LIGHT_PURPLE + "creating Table...");
 		databaseUtils.createTable();
+		new MySQL_timeoutHandler(this, databaseUtils);
 		sendMessage(ChatColor.GREEN + "Database done ✓");
 		sendMessage(ChatColor.LIGHT_PURPLE + "connecting to TeamSpeak³ Server...");
-		TeamSpeakHandler tsHandler = new TeamSpeakHandler(tsCache, messageHandler);
+        tsHandler = new TeamSpeakHandler(tsCache, messageHandler, this);
 		tsHandler.start();
 		sendMessage(ChatColor.GREEN + "TeamSpeak done ✓");
 		sendMessage(ChatColor.LIGHT_PURPLE + "registring Commands and Listeners...");
@@ -73,6 +78,13 @@ public class PSVerify extends Plugin {
 		
 		sendMessage(ChatColor.GREEN + "PSVerify is ready!");
 		
+	}
+	
+	@Override
+	public void onDisable() {
+		
+		tsHandler.disconnect();
+		super.onDisable();
 	}
 
 	

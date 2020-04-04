@@ -19,7 +19,7 @@ import java.util.TreeMap;
  */
 public class SharedCache {
 	
-	private Integer cooldownMillis = 10000;
+	private Integer cooldownMillis;
 	
 	private Map<String, Integer> permtoid = new TreeMap<String, Integer>(String.CASE_INSENSITIVE_ORDER);
 	private Map<Integer, String> idtoperm = new HashMap<Integer, String>();

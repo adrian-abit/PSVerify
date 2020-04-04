@@ -143,6 +143,14 @@ public class UnlinkCommand extends Command implements TabExecutor{
 				} else {
 					sender.sendMessage(getMessage("admin-offline"));
 				}
+			} else {
+				sender.sendMessage(getMessage("usagenoadmin-unlink"));
+			}
+		} else {
+			if(sender.hasPermission("PSVerify.admin")) {
+				sender.sendMessage(getMessage("usageadmin-unlink"));
+			} else {
+				sender.sendMessage(getMessage("usagenoadmin-unlink"));
 			}
 		}
 	}

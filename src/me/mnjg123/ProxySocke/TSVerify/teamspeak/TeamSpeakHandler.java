@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 
@@ -27,6 +28,7 @@ import com.github.theholywaffle.teamspeak3.api.wrapper.Client;
 
 import me.mnjg123.ProxySocke.TSVerify.cache.TeamSpeakCache;
 import me.mnjg123.ProxySocke.TSVerify.handlers.MessageHandler;
+import net.md_5.bungee.api.plugin.Plugin;
 
 /**
  * @author mnjg123 
@@ -40,12 +42,14 @@ public class TeamSpeakHandler extends Thread {
 	private final TS3Query ts3query = new TS3Query(ts3config);
 	private final TS3Api ts3api = ts3query.getApi();
 	private final TS3ApiAsync ts3asyncapi = ts3query.getAsyncApi();
+	private final MessageHandler messageHandler;
 	
 	/**
 	 * Starts the Thread and connects with the TeamSpeak-3 Server
 	 */
-	public TeamSpeakHandler(TeamSpeakCache tsCache, MessageHandler messageHandler) {
+	public TeamSpeakHandler(TeamSpeakCache tsCache, MessageHandler messageHandler, Plugin plugin) {
 		this.tsCache = tsCache;
+		this.messageHandler = messageHandler;
 		
 		ts3config.setHost(getTsCache().getHost());
 		ts3config.setQueryPort(getTsCache().getPort());
@@ -55,12 +59,44 @@ public class TeamSpeakHandler extends Thread {
 		
 		ts3api.login(getTsCache().getUsername(), getTsCache().getPassword());
 		ts3api.selectVirtualServerByPort(9987);
-		ts3api.setNickname(getTsCache().getBotname());
+		
+		ts3api.setNickname(getRandomString());
+		
+		plugin.getProxy().getScheduler().schedule(plugin, new Runnable() {
+			
+			@Override
+			public void run() {
+				ts3api.setNickname(getTsCache().getBotname());
+			}
+		}, 10, TimeUnit.SECONDS);
 		
 		
 		
 		
 		
+		
+	}
+	
+	private String getRandomString() {
+		String CharacterString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
+		StringBuilder sb = new StringBuilder(7);
+		for (int i = 0; i < 7; i++) {
+			int index = (int)(CharacterString.length() * Math.random());
+			sb.append(CharacterString.charAt(index));
+		}
+		return sb.toString();
+	}
+	
+	public void disconnect() {
+		ts3api.setNickname("PSVERFIY-SHUTDOWN");
+		ts3query.exit();
+	}
+	
+	/**
+	 * @return {@link MessageHandler} the messageHandler
+	 */
+	private MessageHandler getMessageHandler() {
+		return messageHandler;
 	}
 	
 	/**
@@ -91,7 +127,7 @@ public class TeamSpeakHandler extends Thread {
 		ts3asyncapi.editClient(client.getId(), Collections.singletonMap(ClientProperty.CLIENT_DESCRIPTION, desc));
 		ts3asyncapi.addClientPermission(client.getDatabaseId(), "i_icon_id", icon_id, false);
 		
-		ts3asyncapi.sendPrivateMessage(client.getId(), "Du wurdest erfolgreich verifiziert!");
+		ts3asyncapi.sendPrivateMessage(client.getId(), getMessageHandler().getMessage("ts-success"));
 		
 		String[] returnStrings = new String[2];
 		returnStrings[0] = client.getUniqueIdentifier().toString();
